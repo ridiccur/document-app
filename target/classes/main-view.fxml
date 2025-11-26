@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.taxtelecom.controller.MainController">
    <center>
       <ListView fx:id="documentListView" BorderPane.alignment="CENTER" />
    </center>
+   <right>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+         </padding>
+         <children>
+            <Button fx:id="createInvoiceBtn" mnemonicParsing="false" onAction="#onCreateInvoice" text="Создать накладную" />
+            <Button fx:id="createPaymentOrderBtn" mnemonicParsing="false" onAction="#onCreatePaymentOrder" text="Создать платёжку" />
+            <Button fx:id="createPaymentRequestBtn" mnemonicParsing="false" onAction="#onCreatePaymentRequest" text="Создать заявку на оплату" />
+            <Separator prefWidth="200" />
+            <Button fx:id="deleteSelectedBtn" mnemonicParsing="false" onAction="#onDeleteSelected" text="Удалить выбранные" />
+            <Separator prefWidth="200" />
+            <Button fx:id="viewBtn" mnemonicParsing="false" onAction="#onView" text="Просмотр" />
+            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#onSave" text="Сохранить" />
+            <Button fx:id="loadBtn" mnemonicParsing="false" onAction="#onLoad" text="Загрузить" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

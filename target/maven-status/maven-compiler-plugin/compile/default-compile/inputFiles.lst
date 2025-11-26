@@ -1,5 +1,8 @@
 /Users/ridiccur/Documents/document-app/src/main/java/com/taxtelecom/Main.java
 /Users/ridiccur/Documents/document-app/src/main/java/com/taxtelecom/controller/MainController.java
+/Users/ridiccur/Documents/document-app/src/main/java/com/taxtelecom/dialogs/InvoiceDialog.java
+/Users/ridiccur/Documents/document-app/src/main/java/com/taxtelecom/dialogs/PaymentOrderDialog.java
+/Users/ridiccur/Documents/document-app/src/main/java/com/taxtelecom/dialogs/PaymentRequestDialog.java
 /Users/ridiccur/Documents/document-app/src/main/java/com/taxtelecom/model/Document.java
 /Users/ridiccur/Documents/document-app/src/main/java/com/taxtelecom/model/Invoice.java
 /Users/ridiccur/Documents/document-app/src/main/java/com/taxtelecom/model/PaymentOrder.java

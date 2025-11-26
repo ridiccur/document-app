@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 @Entity
 @DiscriminatorValue("PaymentOrder")
+// Платёжка
 public class PaymentOrder extends Document {
 
     @Column(nullable = true)
@@ -32,5 +33,13 @@ public class PaymentOrder extends Document {
     public String getDisplayTitle() {
         return "Платёжка №" + getNumber() + " от " +
                 getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("""
+                Тип: Платёжка
+                Сотрудник: %s
+                """, employee);
     }
 }

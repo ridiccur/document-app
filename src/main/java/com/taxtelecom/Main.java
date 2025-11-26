@@ -6,14 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import org.h2.tools.Server;
-
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         // H2 Database Web Console
-        Server webServer = org.h2.tools.Server.createWebServer(
+        org.h2.tools.Server.createWebServer(
             "-web", "-webAllowOthers", "-webPort", "8082"
         ).start();
         Parent root = FXMLLoader.load(getClass().getResource("/main-view.fxml"));

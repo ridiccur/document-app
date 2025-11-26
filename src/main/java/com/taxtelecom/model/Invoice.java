@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 @Entity
 @DiscriminatorValue("Invoice")
-// Класс накладной
+// Накладная
 public class Invoice extends Document {
     @Column(nullable = true)
     private String currency;
@@ -67,5 +67,16 @@ public class Invoice extends Document {
     public String getDisplayTitle() {
         return "Накладная №" + getNumber() + " от " +
                 getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("""
+                Тип: Накладная
+                Валюта: %s
+                Курс Валюты: %.4f
+                Товар: %s
+                Количество: %.3f
+                """, currency, exchangeRate, product, quantity);
     }
 }

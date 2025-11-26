@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 @Entity
 @DiscriminatorValue("PaymentRequest")
+// Заявка на оплату
 public class PaymentRequest extends Document {
 
     @Column(nullable = true)
@@ -68,5 +69,16 @@ public class PaymentRequest extends Document {
     public String getDisplayTitle() {
         return "Заявка №" + getNumber() + " от " +
                 getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("""
+                Тип: Заявка на оплату
+                Контрагент: %s
+                Валюта: %s
+                Курс Валюты: %.4f
+                Комиссия: %.2f
+                """, counterparty, currency, exchangeRate, commission);
     }
 }

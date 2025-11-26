@@ -10,7 +10,7 @@ module com.taxtelecom.documentapp {
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
     
-    opens com.taxtelecom.model to org.hibernate.orm;
+    opens com.taxtelecom.model to org.hibernate.core;
     opens com.taxtelecom to javafx.fxml;
 
     exports com.taxtelecom;

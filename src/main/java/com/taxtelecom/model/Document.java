@@ -75,4 +75,15 @@ public abstract class Document {
     }
 
     public abstract String getDisplayTitle();
+
+    @Override
+    public String toString() {
+        return String.format("""
+                ID: %d
+                Номер: %s
+                Дата: %s
+                Пользователь: %s
+                Сумма: %.2f
+                """, id, number, date, user, amount);
+    }
 }

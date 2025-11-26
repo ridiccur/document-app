@@ -1,8 +1,12 @@
 com/taxtelecom/model/PaymentRequest.class
-module-info.class
 com/taxtelecom/model/PaymentOrder.class
+com/taxtelecom/dialogs/PaymentOrderDialog.class
 com/taxtelecom/model/Document.class
+com/taxtelecom/dialogs/PaymentRequestDialog.class
 com/taxtelecom/controller/MainController.class
+com/taxtelecom/controller/MainController$1.class
+module-info.class
+com/taxtelecom/dialogs/InvoiceDialog.class
 com/taxtelecom/Main.class
 com/taxtelecom/util/HibernateUtil.class
 com/taxtelecom/model/Invoice.class
