@@ -5,6 +5,7 @@ com/taxtelecom/model/Document.class
 com/taxtelecom/dialogs/PaymentRequestDialog.class
 com/taxtelecom/controller/MainController.class
 com/taxtelecom/controller/MainController$1.class
+com/taxtelecom/util/CsvDocumentIO.class
 module-info.class
 com/taxtelecom/dialogs/InvoiceDialog.class
 com/taxtelecom/Main.class

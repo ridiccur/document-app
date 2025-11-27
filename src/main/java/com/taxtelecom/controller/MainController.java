@@ -1,6 +1,7 @@
 package com.taxtelecom.controller;
 
 import com.taxtelecom.model.*;
+import com.taxtelecom.util.CsvDocumentIO;
 import com.taxtelecom.util.HibernateUtil;
 import com.taxtelecom.dialogs.InvoiceDialog;
 import com.taxtelecom.dialogs.PaymentOrderDialog;
@@ -12,11 +13,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.geometry.Pos;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -223,14 +227,49 @@ public class MainController {
 
     @FXML
     private void onSave() {
-        // TODO: Реализовать сохранение в файл
-        showAlert("Сохранить", "Сохранение в файл (не реализовано)");
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Экспорт документов в CSV");
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File file = chooser.showSaveDialog(documentListView.getScene().getWindow());
+
+        if (file != null) {
+            try {
+                List<Document> docs = new ArrayList<>(documents);
+                CsvDocumentIO.exportToCsv(docs, file);
+                showAlert("Экспорт", "Документы экспортированы в " + file.getName());
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Ошибка", "Не удалось экспортировать: " + e.getMessage());
+            }
+        }
     }
 
     @FXML
     private void onLoad() {
-        // TODO: Реализовать загрузку из файла
-        showAlert("Загрузить", "Загрузка из файла (не реализовано)");
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Импорт документов из CSV");
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File file = chooser.showOpenDialog(documentListView.getScene().getWindow());
+
+        if (file != null && file.exists()) {
+            try {
+                List<Document> docs = CsvDocumentIO.importFromCsv(file);
+
+                EntityManager em = HibernateUtil.createEntityManager();
+                em.getTransaction().begin();
+                for (Document doc : docs) {
+                    em.persist(doc);
+                }
+                em.getTransaction().commit();
+                em.close();
+
+                loadDocumentsFromDatabase();
+                showAlert("Импорт", "Документы импортированы из " + file.getName());
+            } catch (IOException | IllegalArgumentException e) {
+                e.printStackTrace();
+                showAlert("Ошибка", "Не удалось импортировать: " + e.getMessage());
+            }
+        }
     }
 
     private void showAlert(String title, String message) {
